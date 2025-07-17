@@ -1,11 +1,18 @@
 # Definition for singly-linked list.
 class ListNode(object):
+    """
+    A node in a linked list
+    Val: the value of this node
+    Next: the downstream node 
+        (if next is None, then this node can be considered the tail)
+    """
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
         
 
 class Solution(object):
+    
     def __init__(self):
         self.mergedHead = None
         self.curr = None
@@ -14,6 +21,7 @@ class Solution(object):
         """
         Input - LL
         Output - Arr
+        Approach - Keep traversing downstream until next is None
         Time - O(n)
         """
         arr = []
@@ -26,6 +34,7 @@ class Solution(object):
         """
         Input - item, LL node (curr tail)
         Output - LL node (new tail)
+        Approach - modify the next value of the current tail, and then update the tail reference
         Time - O(1)
         """
         if curr is None:
@@ -37,17 +46,29 @@ class Solution(object):
     
     def mergeTwoLists(self, list1, list2):
         """
-        Basically copying the logic of the the merge function of mergesort
+        Input - two sorted LL's
+        Output - a merged LL that is sorted
+        Approach - Basically copying the logic of the the merge function of mergesort
         Time complexity: O(n), n = combined length of list1 and list2
         """
         arr1 = self.LLToArr(list1)
         arr2 = self.LLToArr(list2)
-        print(f"List 1 converted to array: {arr1}")
-        print(f"List 2 converted to arr: {arr2}")
         
+        # l and r are points for list1/list2 respectively
+            # this is basically a way of pretending to make actual modifications to the LL
+            # that is, every iteration, you pretend to remove the head of the LL that you are appending from
+                # now that i think about it, im not sure if the preprocessing LL -> arr is necessary
         l = 0
         r = 0
         
+        # look at the head of the two lists and then merge the lowest value
+            # keep doing this until one of the lists is empty
+            # after that, it will be the case that: 
+                # one of the lists will be empty and the other won't
+                    # based on the behaviour of choosing the lowest value - 
+                    # we can just append the entire remnants of the non-empty list, 
+                    # because all those values will be bigger than what's in the current merged list
+                    
         while l < len(arr1) and r < len(arr2):
             if arr1[l] < arr2[r]:
                 self.appendLL(arr1[l], self.curr)
