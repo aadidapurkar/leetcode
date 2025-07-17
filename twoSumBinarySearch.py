@@ -11,18 +11,16 @@ class Solution:
             else:
                 return None
             
-        leftArr = arr[0:len(arr)//2]
         midVal = arr[len(arr)//2][0]
-        rightArr = arr[(len(arr)//2)+1:len(arr)]
         
         if target == midVal:
             return (arr[len(arr)//2])
 
         elif target < midVal:
-            return self.binarySearch(leftArr, target)
+            return self.binarySearch(arr[0:len(arr)//2], target)
         
         else:
-            return self.binarySearch(rightArr, target)
+            return self.binarySearch(arr[(len(arr)//2)+1:len(arr)], target)
         
     def mergeSort(self, arr):
         if len(arr) == 1:
