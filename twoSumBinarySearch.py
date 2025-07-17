@@ -2,8 +2,9 @@
 
 class Solution:
     def binarySearch(self, arr, target):
-        #print(arr)
-        
+        if not arr:            
+            return None
+
         if len(arr) == 1:
             if arr[0][0] == target:
                 return arr[0]
