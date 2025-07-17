@@ -1,26 +1,24 @@
 
 
 class Solution:
-    def binarySearch(self, arr, target):
-        if not arr:            
-            return None
-
-        if len(arr) == 1:
-            if arr[0][0] == target:
-                return arr[0]
-            else:
-                return None
+    def binarySearch(self, arr, target, lo=0, hi=None):
+        if hi is None:            
+            hi = len(arr) - 1
             
-        midVal = arr[len(arr)//2][0]
+        if lo > hi:
+            return None
+        
+        mid = (lo + hi) // 2 
+        midVal = arr[mid][0]
         
         if target == midVal:
-            return (arr[len(arr)//2])
+            return (arr[mid])
 
         elif target < midVal:
-            return self.binarySearch(arr[0:len(arr)//2], target)
+            return self.binarySearch(arr, target,lo,mid-1)
         
         else:
-            return self.binarySearch(arr[(len(arr)//2)+1:len(arr)], target)
+            return self.binarySearch(arr, target, mid+1, hi)
         
     def mergeSort(self, arr):
         if len(arr) == 1:
