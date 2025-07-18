@@ -1,3 +1,6 @@
+import re
+
+
 class Solution(object):
     def preprocess(self, s):
         return re.sub(r'[^a-zA-Z0-9]', '', s).lower()
