@@ -1,6 +1,5 @@
 from typing import List
 
-
 class Solution:
     def search(self, nums: List[int], target: int,l=None,r=None) -> int:
         if l is None and r is None:
